@@ -2,6 +2,15 @@ function selectAll(event) {
   event.target.select();
 }
 
+function Input(props) {
+  return(
+    <p>
+      <span className="input-label">{props.label}</span>
+      <input type="number" className="input" value={props.state} onChange={props.onSet} onFocus={selectAll} />
+    </p>
+  )
+}
+
 class Gear extends React.Component {
   constructor(props) {
     super(props);
@@ -31,14 +40,8 @@ class Gear extends React.Component {
       <div className="contentwrap">
         <div className="formwrap center">
           <form>
-            <p>
-              <span className="input-label">Chainring size</span>
-              <input type="number" className="input" value={this.state.chainring} onChange={this.handleChainringChange} onFocus={selectAll} />
-            </p>
-            <p>
-              <span className="input-label">Cog size</span>
-              <input type="number" className="input" value={this.state.cog} onChange={this.handleCogChange} onFocus={selectAll} />
-            </p>
+            <Input label="Chainring Size" state={this.state.chainring} onSet={this.handleChainringChange} />
+            <Input label="Cog Size" state={this.state.cog} onSet={this.handleCogChange} />
           </form>
         </div>
         <p className="result">{this.ratio}</p>
