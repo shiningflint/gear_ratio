@@ -2,6 +2,15 @@ function selectAll(event) {
   event.target.select();
 }
 
+function maxNumber(number) {
+  if (number > 99) {
+    return 99;
+  }
+  else {
+    return number;
+  }
+}
+
 function Input(props) {
   return(
     <p>
@@ -24,11 +33,13 @@ class Gear extends React.Component {
   }
 
   handleChainringChange(event) {
-    this.setState({chainring: event.target.value});
+    let number = maxNumber(event.target.value);
+    this.setState({chainring: number});
   }
 
   handleCogChange(event) {
-    this.setState({cog: event.target.value});
+    let number = maxNumber(event.target.value);
+    this.setState({cog: number});
   }
 
   get ratio() {
@@ -44,7 +55,7 @@ class Gear extends React.Component {
             <Input label="Cog Size" state={this.state.cog} onSet={this.handleCogChange} />
           </form>
         </div>
-        <p className="result">{this.ratio}</p>
+        <p className="result">{+(this.ratio).toFixed(3)}</p>
       </div>
     );
   }
